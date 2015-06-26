@@ -18,7 +18,14 @@ public class PruebaEjercicio {
         Direccion d1=new Direccion(55130,"ecatepec");
         Usuario u=new Usuario("juean",42,"jcampos@gmail.com",d1);
         System.out.println(u.getDireccion().getMunicipio());
-        // TODO code application logic here
+        
+        
+        Bebida bebida=new Bebida();
+        bebida.setTipo("alcoholicas");
+        String[]reco=bebida.obtenerRecomendaiones();
+        for(String be:reco){
+            System.out.println("Bebida:"+be);
+        }
     }
     
 }
