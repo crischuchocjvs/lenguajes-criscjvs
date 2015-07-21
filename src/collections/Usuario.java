@@ -8,7 +8,7 @@ package collections;
 public class Usuario {
 
     String nombre;
-    int edad;
+    Integer edad;//integer es el equivalente a itn pero en objetos
     String email;
     
     public Usuario(String nombre, int edad, String email){
@@ -25,11 +25,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 

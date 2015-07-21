@@ -22,6 +22,7 @@ public class InterfazUsuarios extends javax.swing.JFrame {
      */
     public InterfazUsuarios() {
         initComponents();
+        botonCargar.setEnabled(false);
     }
 
     /**
@@ -42,10 +43,11 @@ public class InterfazUsuarios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jkjjjj = new javax.swing.JPanel();
         botonCargar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
+        comboSeleccion = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,28 +127,41 @@ public class InterfazUsuarios extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaUsuarios);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        comboSeleccion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ordenar por nombre", "Ordenar por edad" }));
+        comboSeleccion.setToolTipText("");
+        comboSeleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSeleccionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jkjjjjLayout = new javax.swing.GroupLayout(jkjjjj);
+        jkjjjj.setLayout(jkjjjjLayout);
+        jkjjjjLayout.setHorizontalGroup(
+            jkjjjjLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jkjjjjLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jkjjjjLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jkjjjjLayout.createSequentialGroup()
+                        .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(comboSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(236, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jkjjjjLayout.setVerticalGroup(
+            jkjjjjLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jkjjjjLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(botonCargar)
+                .addGroup(jkjjjjLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCargar)
+                    .addComponent(comboSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(151, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Mostrar usuarios", jPanel2);
+        jTabbedPane1.addTab("Mostrar usuarios", jkjjjj);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,7 +180,7 @@ public class InterfazUsuarios extends javax.swing.JFrame {
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
     GeneradorDeusuarios gen=new GeneradorDeusuarios();
     List<Usuario> usuarios= gen.getUsuarios();
-    Collections.sort(usuarios, new UsuarioPorNombre());
+    Collections.sort(usuarios, new UsuarioPorEdad());
         tablaUsuarios.setModel(new DefaultTableModel(new String[]{"Nombre","Edad","Email"}, gen.getUsuarios().size())); 
         
         int fila=0;
@@ -176,6 +191,12 @@ public class InterfazUsuarios extends javax.swing.JFrame {
             fila++;
         }
     }//GEN-LAST:event_botonCargarActionPerformed
+
+    private void comboSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionActionPerformed
+        botonCargar.setEnabled(true);
+        int indice=comboSeleccion.getSelectedIndex();
+// TODO add your handling code here:
+    }//GEN-LAST:event_comboSeleccionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,13 +236,14 @@ public class InterfazUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCargar;
     private javax.swing.JButton botonGuardar;
+    private javax.swing.JComboBox comboSeleccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel jkjjjj;
     private javax.swing.JTable tablaUsuarios;
     private javax.swing.JTextField textoEdad;
     private javax.swing.JTextField textoEmail;
