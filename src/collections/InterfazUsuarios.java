@@ -7,8 +7,8 @@ package collections;
 
 import java.util.Collections;
 import java.util.List;
-import javafx.geometry.VPos;
-import javafx.scene.layout.GridPane;
+//import javafx.geometry.VPos;
+//import javafx.scene.layout.GridPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -178,7 +178,33 @@ public class InterfazUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
-    GeneradorDeusuarios gen=new GeneradorDeusuarios();
+         int indice=comboSeleccion.getSelectedIndex();
+         GeneradorDeusuarios gen=new GeneradorDeusuarios();
+        List<Usuario> usuarios= gen.getUsuarios();
+        int fila=0;
+        if (indice==1){
+          Collections.sort(usuarios, new UsuarioPorEdad());
+        tablaUsuarios.setModel(new DefaultTableModel(new String[]{"Nombre","Edad","Email"}, gen.getUsuarios().size())); 
+        
+       
+        for(Usuario u:usuarios){
+            tablaUsuarios.setValueAt(u.nombre, fila, 0);
+            tablaUsuarios.setValueAt(u.getEdad(), fila, 1);
+            tablaUsuarios.setValueAt(u.getEmail(), fila, 2);
+            fila++;
+        }  
+        }else if(indice==0){
+            Collections.sort(usuarios, new UsuarioPorNombre());
+        tablaUsuarios.setModel(new DefaultTableModel(new String[]{"Nombre","Edad","Email"}, gen.getUsuarios().size())); 
+    
+        for(Usuario u:usuarios){
+            tablaUsuarios.setValueAt(u.nombre, fila, 0);
+            tablaUsuarios.setValueAt(u.getEdad(), fila, 1);
+            tablaUsuarios.setValueAt(u.getEmail(), fila, 2);
+            fila++;
+        }}
+       
+   /* GeneradorDeusuarios gen=new GeneradorDeusuarios();
     List<Usuario> usuarios= gen.getUsuarios();
     Collections.sort(usuarios, new UsuarioPorEdad());
         tablaUsuarios.setModel(new DefaultTableModel(new String[]{"Nombre","Edad","Email"}, gen.getUsuarios().size())); 
@@ -188,13 +214,14 @@ public class InterfazUsuarios extends javax.swing.JFrame {
             tablaUsuarios.setValueAt(u.nombre, fila, 0);
             tablaUsuarios.setValueAt(u.getEdad(), fila, 1);
             tablaUsuarios.setValueAt(u.getEmail(), fila, 2);
-            fila++;
-        }
+            fila++;*/
+        
     }//GEN-LAST:event_botonCargarActionPerformed
 
     private void comboSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionActionPerformed
         botonCargar.setEnabled(true);
-        int indice=comboSeleccion.getSelectedIndex();
+       
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_comboSeleccionActionPerformed
 
